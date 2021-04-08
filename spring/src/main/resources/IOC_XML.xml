@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 注入属性：外部bean -->
+    <bean id="userService" class="cn.zheng.IOC.UserService">
+        <property name="userDao" ref="userDaoImpl"/>
+    </bean>
+    <bean id="userDaoImpl" class="cn.zheng.IOC.UserDao"/>
+
+    <!-- 注入属性：内部bean -->
+    <bean id="emp" class="cn.zheng.IOC.Emp">
+        <property name="name" value="lucy"></property>
+        <property name="gender" value="女"></property>
+        <property name="dept">
+            <bean id="dept" class="cn.zheng.IOC.Dept">
+                <property name="name" value="安保部"/>
+            </bean>
+        </property>
+    </bean>
+
+
+    <!-- 注入集合属性 -->
+    <bean id="stu" class="cn.zheng.IOC.Stu">
+        <!-- 数组 -->
+        <property name="courses">
+            <array>
+                <value>java</value>
+                <value>数据库</value>
+            </array>
+        </property>
+        <!-- list -->
+        <property name="list">
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+            </list>
+        </property>
+        <!-- set -->
+        <property name="set">
+            <set>
+                <value>MySQL</value>
+                <value>Redis</value>
+            </set>
+        </property>
+        <!-- map -->
+        <property name="map">
+            <map>
+                <entry key="JAVA" value="java"/>
+                <entry key="PHP" value="php"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <!-- 演示bean的生命周期 -->
+    <bean id="order" class="cn.zheng.IOC.Order"
+          init-method="initMethod" destroy-method="destoryMethod">
+        <property name="name" value="手机"/>
+    </bean>
+
+
+</beans>

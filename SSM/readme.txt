@@ -1,0 +1,20 @@
+SSM
+用户发起请求--SpringMVC接收--Spring中的Service对象--MyBatis处理数据
+实现步骤：
+0.使用test_db数据库，使用student表
+1.新建maven web项目
+2.加入依赖
+    springmvc,spring,mybatis三个框架的依赖，jackjon依赖，mysql驱动，druid连接池，jsp依赖，servlet依赖
+3.写web.xml
+    1)注册DispatcherServlet，目的：创建springmvc容器对象以创建Controller类对象；创建的是Servlet才能接收用户的请求
+    2)注册spring的监听器：ContextLoaderListener，目的：创建spring的容器对象，才能创建service、dao等对象
+    3)注册字符集过滤器，解决post请求乱码的问题
+4.创建包
+    controller包，service包，dao包，实体类包
+5.写配置文件
+    1)springmvc配置文件
+    2)spring配置文件
+    3)mybatis主配置文件
+    4)数据库的属性配置文件
+6.写代码，dao接口和mapper文件，service和实现类，controller，实体类
+7.写jsp页面

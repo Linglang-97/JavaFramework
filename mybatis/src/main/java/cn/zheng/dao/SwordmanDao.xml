@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace要求使用dao接口的全限定名称 -->
+<mapper namespace="cn.zheng.dao.SwordmanDao">
+    <insert id="insertSwordman">
+        insert into swordman values(#{id}, #{name}, #{gender}, #{age}, #{job})
+    </insert>
+    <delete id="deleteSwordman">
+        delete from swordman where id = #{id}
+    </delete>
+    <update id="updateSwordman">
+        update swordman set name = #{name}, gender = #{gender}, age = #{age}, job = #{job} where id = #{id}
+    </update>
+    <select id="selectAllNum" resultType="java.lang.Integer">
+        select count(*) from swordman
+    </select>
+    <select id="selectSwordman" resultType="cn.zheng.domain.Swordman">
+        select * from swordman where id = #{id}
+    </select>
+    <select id="allSwordmans" resultType="cn.zheng.domain.Swordman">
+        select id, name, gender, age, job from swordman
+    </select>
+    <select id="selectSwordmanByIdAndName" resultType="cn.zheng.domain.Swordman">
+        select id, name, gender, age, job from swordman where id = #{swordmanId} and name = #{swordmanName}
+    </select>
+    <select id="selectSwordmanDynamicSQL" resultType="cn.zheng.domain.Swordman">
+        select id, name, gender, age, job from swordman
+        <where>
+            <if test="age > 20">
+                and age &gt; #{age}
+            </if>
+        </where>
+    </select>
+</mapper>
+

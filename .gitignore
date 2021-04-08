@@ -1,0 +1,6 @@
+# Project exclude paths
+/mybatis/target/
+/spring/target/
+/spring-mybatis/target/
+/springmvc/target/
+/SSM/target/
